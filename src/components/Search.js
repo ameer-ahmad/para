@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
+import MealsContext from '../contexts/MealsContext'
 
 const Search = () => {
 
     const [search, setSearch] = useState("");
+    const {setMeals} = useContext(MealsContext)
 
     const options = {
         method: 'GET',
@@ -20,6 +22,7 @@ const Search = () => {
     const submit = () => {
         axios.request(options).then(function (response) {
             console.log(response.data.results);
+            setMeals(response.data.results);
         }).catch(function (error) {
             console.error(error);
         });

@@ -1,11 +1,14 @@
 import './App.css';
 import Search from './components/Search';
+import Meals from './components/Meals';
+import { MealsProvider } from './contexts/MealsContext'
 
 function App() {
   return (
-    <div className="App">
+    <MealsProvider>
       <Search />
-    </div>
+      <Meals />
+    </MealsProvider>
   );
 }
 
