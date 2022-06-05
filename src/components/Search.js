@@ -1,28 +1,92 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import MealsContext from '../contexts/MealsContext'
 
 const Search = () => {
 
     const [search, setSearch] = useState("");
-    const {setMeals} = useContext(MealsContext)
+    const {mealType, setMealType} = useContext(MealsContext)
+    const {setMeals} = useContext(MealsContext);
 
-    const options = {
-        method: 'GET',
-        url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-        params: {
-            query: search,
-        },
-        headers: {
-            'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-            'X-RapidAPI-Key': '0e3f16cb99msh0c45ed889f095e2p1db952jsn93820868190d'
-          }
-    }
+    useEffect(() => {
+        setMealType('recipes')
+    }, [])
+
 
     const submit = () => {
+        if (mealType === 'recipes') {
+            displayRecipes()
+        } else if (mealType === 'products') {
+            displayProducts()
+        } else if (mealType === 'menuItems') {
+            displayMenuItems()
+        }
+    }
+
+    const displayRecipes = () => {
+        const options = {
+            method: 'GET',
+            url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
+            params: {
+              query: search,
+            },
+            headers: {
+              'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+              'X-RapidAPI-Key': '0e3f16cb99msh0c45ed889f095e2p1db952jsn93820868190d'
+            }
+        };
+        
         axios.request(options).then(function (response) {
-            console.log(response.data.results);
+            for (let i = 0; i < response.data.results.length; i++) {
+                response.data.results[i].mealType = mealType;
+            }
             setMeals(response.data.results);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+
+    const displayProducts = () => {
+        const options = {
+            method: 'GET',
+            url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/products/search',
+            params: {
+              query: search,
+            },
+            headers: {
+              'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+              'X-RapidAPI-Key': '0e3f16cb99msh0c45ed889f095e2p1db952jsn93820868190d'
+            }
+          };
+          
+        axios.request(options).then(function (response) {
+            for (let i = 0; i < response.data.products.length; i++) {
+                response.data.products[i].mealType = mealType;
+            }
+            setMeals(response.data.products)
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+
+    const displayMenuItems = () => {
+        const options = {
+            method: 'GET',
+            url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/menuItems/search',
+            params: {
+              query: search,
+            },
+            headers: {
+              'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+              'X-RapidAPI-Key': '0e3f16cb99msh0c45ed889f095e2p1db952jsn93820868190d'
+            }
+          };
+          
+        axios.request(options).then(function (response) {
+            for (let i = 0; i < response.data.menuItems.length; i++) {
+                response.data.menuItems[i].mealType = mealType;
+            }
+            setMeals(response.data.menuItems)
         }).catch(function (error) {
             console.error(error);
         });
@@ -31,6 +95,11 @@ const Search = () => {
   return (
     <div>
         <input type="search" placeholder="Enter a meal..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <select name="meals" id="meals" onChange={(e) => setMealType(e.target.value)}>
+            <option value="recipes">Recipes</option>
+            <option value="products">Products</option>
+            <option value="menuItems">Menu Items</option>
+        </select>
         <button onClick={submit}>Submit</button>
     </div>
   )

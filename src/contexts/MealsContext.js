@@ -4,9 +4,10 @@ const MealsContext = createContext()
 
 export const MealsProvider = ({children}) => {
     const [meals, setMeals] = useState([])
+    const [mealType, setMealType] = useState('')
 
     return (
-        <MealsContext.Provider value={{meals, setMeals}} >
+        <MealsContext.Provider value={{meals, setMeals, mealType, setMealType}} >
             {children}
         </MealsContext.Provider>
     )
