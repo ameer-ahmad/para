@@ -5,12 +5,11 @@ import MealsContext from '../contexts/MealsContext'
 const Meal = ({meal}) => {
 
     const [nutrients, setNutrients] = useState({});
-    const {meals} = useContext(MealsContext);
+    const {meals, setMealPlan, mealPlan, setMealPlanTotalNutrients, mealPlanTotalNutrients} = useContext(MealsContext);
 
     useEffect(() => {
         if (meal.mealType === 'recipes') {
             recipeNutrients()
-            console.log('test')
         } else if (meal.mealType === 'products') {
             productNutrients()
         } else if (meal.mealType === 'menuItems') {
@@ -30,10 +29,10 @@ const Meal = ({meal}) => {
 
         axios.request(options).then(function (response) {
             setNutrients({
-                calories: response.data.calories,
-                carbs: response.data.carbs,
-                fat: response.data.fat,
-                protein: response.data.protein,
+                calories: parseInt(response.data.calories.slice(0, -1)),
+                carbs: parseInt(response.data.carbs.slice(0, -1)),
+                fat: parseInt(response.data.fat.slice(0, -1)),
+                protein: parseInt(response.data.protein.slice(0, -1)),
             })
         }).catch(function (error) {
             console.error(error);
@@ -51,12 +50,11 @@ const Meal = ({meal}) => {
           };
           
           axios.request(options).then(function (response) {
-              console.log(response.data);
               setNutrients({
                 calories: response.data.nutrition.calories,
-                carbs: response.data.nutrition.carbs,
-                fat: response.data.nutrition.fat,
-                protein: response.data.nutrition.protein,
+                carbs: parseInt(response.data.nutrition.carbs.slice(0, -1)),
+                fat: parseInt(response.data.nutrition.fat.slice(0, -1)),
+                protein: parseInt(response.data.nutrition.protein.slice(0, -1)),
             })
           }).catch(function (error) {
               console.error(error);
@@ -74,16 +72,25 @@ const Meal = ({meal}) => {
           };
           
           axios.request(options).then(function (response) {
-              console.log(response.data);
               setNutrients({
                 calories: response.data.nutrition.calories,
-                carbs: response.data.nutrition.carbs,
-                fat: response.data.nutrition.fat,
-                protein: response.data.nutrition.protein,
+                carbs: parseInt(response.data.nutrition.carbs.slice(0, -1)),
+                fat: parseInt(response.data.nutrition.fat.slice(0, -1)),
+                protein: parseInt(response.data.nutrition.protein.slice(0, -1)),
             })
           }).catch(function (error) {
               console.error(error);
           });
+    }
+
+    const addMealPlan = () => {
+        setMealPlan([...mealPlan, meal])
+        setMealPlanTotalNutrients({
+            calories: mealPlanTotalNutrients.calories += nutrients.calories,
+            carbs: mealPlanTotalNutrients.carbs += nutrients.carbs,
+            fat: mealPlanTotalNutrients.fat += nutrients.fat,
+            protein: mealPlanTotalNutrients.protein += nutrients.protein,
+        })
     }
 
 
@@ -92,6 +99,7 @@ const Meal = ({meal}) => {
             <img src={meal.image} alt={meal.title} />
             <h3>{meal.title}</h3>
             <p>Calories: {nutrients.calories}cal Carbs: {nutrients.carbs} Fat: {nutrients.fat} Proteins: {nutrients.protein}</p>
+            <button onClick={addMealPlan}>add</button>
         </div>
     )
 }

@@ -6,10 +6,16 @@ const Search = () => {
 
     const [search, setSearch] = useState("");
     const {mealType, setMealType} = useContext(MealsContext)
-    const {setMeals} = useContext(MealsContext);
+    const {setMeals, setMealPlanTotalNutrients} = useContext(MealsContext);
 
     useEffect(() => {
         setMealType('recipes')
+        setMealPlanTotalNutrients({
+            calories: 0,
+            carbs: 0,
+            fat: 0,
+            protein: 0,
+        })
     }, [])
 
 

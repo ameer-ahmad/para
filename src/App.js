@@ -1,6 +1,7 @@
 import './App.css';
 import Search from './components/Search';
 import Meals from './components/Meals';
+import MealPlan from './components/MealPlan'
 import { MealsProvider } from './contexts/MealsContext'
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <MealsProvider>
       <Search />
       <Meals />
+      <MealPlan />
     </MealsProvider>
   );
 }
