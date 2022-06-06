@@ -32,11 +32,18 @@ const MealPlanItem = ({item, id, nutrients}) => {
     }
     
     return(
-        <div>
-            <img src={item.image} alt={item.title} />
-            <h3>{item.title}</h3>
-            <p>Calories: {nutrients.calories}cal Carbs: {nutrients.carbs} Fat: {nutrients.fat} Protein: {nutrients.protein}</p>
-            <button onClick={removeMeal}>remove</button>
+        <div className="mealPlanItemContainer">
+            <div className="mealPlanImageContainer">
+                <img className="mealPlanImage" src={item.image} alt={item.title} />
+            </div>
+            <h3 className="mealPlanTitle">{item.title}</h3>
+            <div className="mealNutrientsContainer">
+                    <span className="mealNutrients calories">{nutrients.calories} cal</span>
+                    <span className="mealNutrients carbs">{nutrients.carbs} carbs</span>
+                    <span className="mealNutrients fat">{nutrients.fat} fat</span>
+                    <span className="mealNutrients protein">{nutrients.protein} protein</span>
+                </div>
+            <button className="removeBtn" onClick={removeMeal}>-</button>
         </div>
     )
 }

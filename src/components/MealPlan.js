@@ -1,16 +1,33 @@
 import React, { useContext } from 'react';
 import MealsContext from '../contexts/MealsContext'
 import MealPlanItem from './MealPlanlItem'
+import mealPlanLogo from '../images/mealPlanLogo.png'
 
 const MealPlan = () => {
 
-    const {mealPlan, mealPlanTotalNutrients, mealPlanNutrients} = useContext(MealsContext);
+    const {mealPlan, setMealPlan, mealPlanTotalNutrients, setMealPlanTotalNutrients, mealPlanNutrients} = useContext(MealsContext);
 
     return (
-        <div>
-            <h2>My Meal Plan</h2>
-            <p>{mealPlanTotalNutrients.calories} Calories</p>
-            <p>{mealPlanTotalNutrients.carbs} Carbs {mealPlanTotalNutrients.fat} Fat {mealPlanTotalNutrients.protein} Protein</p>
+        <div className="mealPlanContainer">
+            <img src={mealPlanLogo} alt="para planner" />
+            <div className="summaryContainer">
+                <p className="mealPlanSummary">Summary of <strong>{mealPlan.length} item(s)</strong></p>
+                <button className="clearAll" onClick={() => {
+                    setMealPlan([])
+                    setMealPlanTotalNutrients({
+                        calories: 0,
+                        carbs: 0,
+                        fat: 0,
+                        protein: 0,
+                    })
+                    }}>x</button>
+            </div>
+            <div className="mealNutrientsContainer">
+                    <span className="mealNutrients calories">{mealPlanTotalNutrients.calories} cal</span>
+                    <span className="mealNutrients carbs">{mealPlanTotalNutrients.carbs} carbs</span>
+                    <span className="mealNutrients fat">{mealPlanTotalNutrients.fat} fat</span>
+                    <span className="mealNutrients protein">{mealPlanTotalNutrients.protein} protein</span>
+                </div>
             {mealPlan.map((item, pos) => (
                 <MealPlanItem item={item} key={pos} id={pos} nutrients={mealPlanNutrients[pos]} />
             ))}
