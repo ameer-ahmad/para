@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import MealsContext from '../contexts/MealsContext'
+import Modal from './Modal'
 
 const Meal = ({meal}) => {
 
     const [nutrients, setNutrients] = useState({});
-    const {meals, setMealPlan, mealPlan, setMealPlanTotalNutrients, mealPlanTotalNutrients} = useContext(MealsContext);
+    const {meals, setMealPlan, mealPlan, setMealPlanTotalNutrients, mealPlanTotalNutrients, setMealPlanNutrients, mealPlanNutrients} = useContext(MealsContext);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
         if (meal.mealType === 'recipes') {
@@ -91,16 +93,28 @@ const Meal = ({meal}) => {
             fat: mealPlanTotalNutrients.fat += nutrients.fat,
             protein: mealPlanTotalNutrients.protein += nutrients.protein,
         })
+        setMealPlanNutrients([...mealPlanNutrients, {
+            calories: nutrients.calories,
+            carbs: nutrients.carbs,
+            fat: nutrients.fat,
+            protein: nutrients.protein
+        }])
+
     }
 
 
     return (
-        <div>
-            <img src={meal.image} alt={meal.title} />
-            <h3>{meal.title}</h3>
-            <p>Calories: {nutrients.calories}cal Carbs: {nutrients.carbs} Fat: {nutrients.fat} Proteins: {nutrients.protein}</p>
-            <button onClick={addMealPlan}>add</button>
-        </div>
+        <>
+            <div onClick={() => setModalIsOpen(true)}>
+                <img src={meal.image} alt={meal.title} />
+                <h3>{meal.title}</h3>
+                <p>Calories: {nutrients.calories}cal Carbs: {nutrients.carbs} Fat: {nutrients.fat} Proteins: {nutrients.protein}</p>
+                <button onClick={addMealPlan}>add</button>
+            </div>
+            {modalIsOpen ? (
+                <Modal meal={meal} />
+            ) : null}
+        </>
     )
 }
 

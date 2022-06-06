@@ -4,7 +4,7 @@ import MealPlanItem from './MealPlanlItem'
 
 const MealPlan = () => {
 
-    const {mealPlan, mealPlanTotalNutrients} = useContext(MealsContext);
+    const {mealPlan, mealPlanTotalNutrients, mealPlanNutrients} = useContext(MealsContext);
 
     return (
         <div>
@@ -12,7 +12,7 @@ const MealPlan = () => {
             <p>{mealPlanTotalNutrients.calories} Calories</p>
             <p>{mealPlanTotalNutrients.carbs} Carbs {mealPlanTotalNutrients.fat} Fat {mealPlanTotalNutrients.protein} Protein</p>
             {mealPlan.map((item, pos) => (
-                <MealPlanItem item={item} key={pos} />
+                <MealPlanItem item={item} key={pos} id={pos} nutrients={mealPlanNutrients[pos]} />
             ))}
         </div>
     )
