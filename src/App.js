@@ -7,9 +7,13 @@ import { MealsProvider } from './contexts/MealsContext'
 function App() {
   return (
     <MealsProvider>
-      <Search />
-      <Meals />
-      <MealPlan />
+      <div className="container">
+        <div className="mealsContainer">
+          <Search />
+          <Meals />
+        </div>
+        <MealPlan />
+      </div>
     </MealsProvider>
   );
 }

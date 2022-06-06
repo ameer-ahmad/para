@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import MealsContext from '../contexts/MealsContext'
+import logo from '../images/logo.png'
 
 const Search = () => {
 
@@ -99,14 +100,15 @@ const Search = () => {
     }
 
   return (
-    <div>
-        <input type="search" placeholder="Enter a meal..." value={search} onChange={(e) => setSearch(e.target.value)}/>
-        <select name="meals" id="meals" onChange={(e) => setMealType(e.target.value)}>
+    <div className="searchContainer">
+        <img src={logo} alt="logo" className="searchLogo" />
+        <input className="searchInput" type="search" placeholder="Enter a meal..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+        <select className="searchSelect" name="meals" id="meals" onChange={(e) => setMealType(e.target.value)}>
             <option value="recipes">Recipes</option>
             <option value="products">Products</option>
             <option value="menuItems">Menu Items</option>
         </select>
-        <button onClick={submit}>Submit</button>
+        <button className="searchBtn" onClick={submit}>Search</button>
     </div>
   )
 }

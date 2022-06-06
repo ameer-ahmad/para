@@ -105,7 +105,7 @@ const Meal = ({meal}) => {
 
     return (
         <>
-            <div onClick={() => setModalIsOpen(true)}>
+            <div className="mealContainer" onClick={() => setModalIsOpen(true)}>
                 <img src={meal.image} alt={meal.title} />
                 <h3>{meal.title}</h3>
                 <p>Calories: {nutrients.calories}cal Carbs: {nutrients.carbs} Fat: {nutrients.fat} Proteins: {nutrients.protein}</p>
