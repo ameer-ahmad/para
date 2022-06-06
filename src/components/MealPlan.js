@@ -5,7 +5,7 @@ import mealPlanLogo from '../images/mealPlanLogo.png'
 
 const MealPlan = () => {
 
-    const {mealPlan, setMealPlan, mealPlanTotalNutrients, setMealPlanTotalNutrients, mealPlanNutrients} = useContext(MealsContext);
+    const {mealPlan, setMealPlan, mealPlanTotalNutrients, setMealPlanTotalNutrients, mealPlanNutrients, setMealPlanNutrients} = useContext(MealsContext);
 
     return (
         <div className="mealPlanContainer">
@@ -14,6 +14,7 @@ const MealPlan = () => {
                 <p className="mealPlanSummary">Summary of <strong>{mealPlan.length} item(s)</strong></p>
                 <button className="clearAll" onClick={() => {
                     setMealPlan([])
+                    setMealPlanNutrients([])
                     setMealPlanTotalNutrients({
                         calories: 0,
                         carbs: 0,
