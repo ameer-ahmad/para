@@ -109,10 +109,13 @@ const Meal = ({meal}) => {
                 <img src={meal.image} alt={meal.title} />
                 <h3>{meal.title}</h3>
                 <p>Calories: {nutrients.calories}cal Carbs: {nutrients.carbs} Fat: {nutrients.fat} Proteins: {nutrients.protein}</p>
-                <button onClick={addMealPlan}>add</button>
+                <button onClick={(e) => {
+                    e.stopPropagation()
+                    addMealPlan()
+                }}>add</button>
             </div>
             {modalIsOpen ? (
-                <Modal meal={meal} />
+                <Modal meal={meal} setModalIsOpen={setModalIsOpen} />
             ) : null}
         </>
     )
