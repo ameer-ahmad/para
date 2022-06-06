@@ -81,7 +81,7 @@ body {
 
 .mealContainer {
   width: 370px;
-  height: 370px;
+  height: 300px;
   border: 1px solid #b2bdc2;
   border-radius: 5px;
   cursor: pointer;
@@ -111,10 +111,11 @@ body {
   color: #012E41;
   padding-left: 28px;
   padding-right: 10px;
+  margin-top: 15px;
 }
 
 .mealNutrientsContainer {
-  margin-top: 55px;
+  margin-top: 30px;
   margin-left: 27px;
 }
 
@@ -258,4 +259,11 @@ body {
   font-weight: 700;
   margin-left: 12px;
   cursor: pointer;
+}
+
+.mealSource {
+  font-size: 14px;
+  color: #6b8089;
+  margin-left: 28px;
+  margin-top: 6px;
 }

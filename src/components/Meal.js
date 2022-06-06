@@ -8,6 +8,7 @@ const Meal = ({meal}) => {
     const [nutrients, setNutrients] = useState({});
     const {meals, setMealPlan, mealPlan, setMealPlanTotalNutrients, mealPlanTotalNutrients, setMealPlanNutrients, mealPlanNutrients} = useContext(MealsContext);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [info, setInfo] = useState({})
 
     useEffect(() => {
         if (meal.mealType === 'recipes') {
@@ -39,6 +40,21 @@ const Meal = ({meal}) => {
         }).catch(function (error) {
             console.error(error);
         });
+
+        const options2 = {
+            method: 'GET',
+            url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${meal.id}/information`,
+            headers: {
+              'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+              'X-RapidAPI-Key': '0e3f16cb99msh0c45ed889f095e2p1db952jsn93820868190d'
+            }
+          };
+          
+          axios.request(options2).then(function (response) {
+              setInfo(response.data)
+          }).catch(function (error) {
+              console.error(error);
+          });
     }
 
     const productNutrients = () => {
@@ -83,6 +99,22 @@ const Meal = ({meal}) => {
           }).catch(function (error) {
               console.error(error);
           });
+
+          const options2 = {
+            method: 'GET',
+            url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/menuItems/${meal.id}`,
+            headers: {
+              'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+              'X-RapidAPI-Key': '0e3f16cb99msh0c45ed889f095e2p1db952jsn93820868190d'
+            }
+          };
+          
+          axios.request(options2).then(function (response) {
+              setInfo(response.data)
+              console.log(response.data)
+          }).catch(function (error) {
+              console.error(error);
+          });
     }
 
     const addMealPlan = () => {
@@ -110,6 +142,12 @@ const Meal = ({meal}) => {
                     <img className="mealImage" src={meal.image} alt={meal.title} />
                 </div>
                 <h3 className="mealTitle">{meal.title}</h3>
+                {meal.mealType === "recipes" ? (
+                    <h4 className="mealSource">{info.sourceName}</h4>
+                ):null}
+                {meal.mealType === "menuItems" ? (
+                    <h4 className="mealSource">{info.restaurantChain}</h4>
+                ):null}
                 <div className="mealNutrientsContainer">
                     <span className="mealNutrients calories">{nutrients.calories} cal</span>
                     <span className="mealNutrients carbs">{nutrients.carbs} carbs</span>
