@@ -106,13 +106,20 @@ const Meal = ({meal}) => {
     return (
         <>
             <div className="mealContainer" onClick={() => setModalIsOpen(true)}>
-                <img src={meal.image} alt={meal.title} />
-                <h3>{meal.title}</h3>
-                <p>Calories: {nutrients.calories}cal Carbs: {nutrients.carbs} Fat: {nutrients.fat} Proteins: {nutrients.protein}</p>
-                <button onClick={(e) => {
+                <div className="mealImageContainer">
+                    <img className="mealImage" src={meal.image} alt={meal.title} />
+                </div>
+                <h3 className="mealTitle">{meal.title}</h3>
+                <div className="mealNutrientsContainer">
+                    <span className="mealNutrients calories">{nutrients.calories} cal</span>
+                    <span className="mealNutrients carbs">{nutrients.carbs} carbs</span>
+                    <span className="mealNutrients fat">{nutrients.fat} fat</span>
+                    <span className="mealNutrients protein">{nutrients.protein} protein</span>
+                </div>
+                <button className="addBtn" onClick={(e) => {
                     e.stopPropagation()
                     addMealPlan()
-                }}>add</button>
+                }}>+</button>
             </div>
             {modalIsOpen ? (
                 <Modal meal={meal} setModalIsOpen={setModalIsOpen} />

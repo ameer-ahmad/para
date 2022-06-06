@@ -14,17 +14,19 @@
   display: flex;
   justify-content:center;
   align-items:center;
+  z-index: 100;
 }
 
 .modal {
   background-color: #fff;
+  z-index: 101;
 }
 
 .container {
   display: flex;
 }
 
-.mealsContainer {
+.mainContainer {
   width: 75%;
 }
 
@@ -74,4 +76,87 @@
 .mealContainer {
   width: 370px;
   height: 370px;
+  border: 1px solid #b2bdc2;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.mealContainer:hover {
+  border-color: #012e41;
+}
+
+.mealImageContainer {
+  height: 50%;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  overflow: hidden;
+}
+
+.mealImage {
+  height: 80%;
+}
+
+.mealTitle {
+  font-size: 21px;
+  color: #012E41;
+  padding-left: 28px;
+  padding-right: 10px;
+}
+
+.mealNutrientsContainer {
+  margin-top: 55px;
+  margin-left: 27px;
+}
+
+.mealNutrients {
+  border-radius: 24px;
+  padding: 12px;
+  font-size: 12px;
+  color: #012e41;
+  margin-right: 8px;
+}
+
+.mealNutrients.calories {
+  background-color: #e1f3f3;
+}
+
+.mealNutrients.carbs {
+  background-color: #f3ebe1;
+}
+
+.mealNutrients.fat {
+  background-color: #f3e1f2;
+}
+
+.mealNutrients.protein {
+  background-color: #fadddd;
+}
+
+.mealsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 53px;
+}
+
+.addBtn {
+  color: #028c8c;
+  font-size: 30px;
+  border-radius:50px;
+  border: none;
+  background-color: #fff;
+  position: absolute;
+  top: 25px;
+  right:25px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: #f3e1e6;
 }

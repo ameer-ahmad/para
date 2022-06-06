@@ -6,7 +6,7 @@ const Meals = () => {
     const {meals} = useContext(MealsContext)
 
     return (
-        <div>
+        <div className="mealsContainer">
             {meals.map((meal, pos) => (
                 <Meal meal={meal} key={pos} />
             ))}

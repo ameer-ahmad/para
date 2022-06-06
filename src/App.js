@@ -8,7 +8,7 @@ function App() {
   return (
     <MealsProvider>
       <div className="container">
-        <div className="mealsContainer">
+        <div className="mainContainer">
           <Search />
           <Meals />
         </div>
