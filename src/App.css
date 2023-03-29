@@ -396,4 +396,12 @@ body {
   .mealNutrientsContainer {
     flex-wrap: wrap;
   }
+
+  .searchSelect, .searchBtn {
+    margin-top: 25px;
+  }
+
+  .searchInput {
+    width: 95%;
+  }
 }

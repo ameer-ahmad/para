@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Para - Food Tracking App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Para, a food tracking app that helps you discover new recipes!
 
-## Available Scripts
+View the deployed app here: https://para-tracker.netlify.app/
 
-In the project directory, you can run:
+Project Descripiton: Users can search for recipes, products, or menu items and view the calories and macro nutrients for each item. Recipes gathers different recipes using the Spoonacular API and allows you to discover new meals. Products display grocery store items such as bananas or apples, and menu items display information from restaurants such as a big mac from mcdonalds. Users can click on an individual meal to open a modal which displays more in depth information including the recipe instructions. Users can also add and remove food items to a daily planner which keeps track of your total calories and macros.
 
+The features of the app include:
+- Search for a recipe, menu item, or product
+- View calories and macro nutrients for each food item and
+- View in-depth information about each food item by clicking and opening the modal
+- Add and remove food items from the daily planner
+
+Some feature I would like to include in the future:
+- Loading screen when searching for food items
+- Empty screen when no search results are present
+- Ability to save daily planner to local storage
+- Ability to view past daily planners
+
+## Local Build
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
+The app with no search results
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![1](public/screenshot1.png)
 
-### `npm run build`
+The app with recipes search result
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![2](public/screenshot2.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app with products search result
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![3](public/screenshot3.png)
 
-### `npm run eject`
+The app with menu items search result
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![4](public/screenshot4.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The app with items in the daily planner
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![5](public/screenshot5.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The app with the modal screen open
 
-## Learn More
+![6](public/screenshot6.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The app on a mobile device
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![7](public/screenshot7.png)
